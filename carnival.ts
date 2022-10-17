@@ -99,6 +99,7 @@ namespace carnival {
     //% myColor.defl=4
     //% myPosition.defl=areas.Bottom
     //% inlineInputMode=inline
+    //% help=github:carnival/docs/add_label_to
     export function add_label_to(myLabel: string, myPosition: areas, myColor?: number) {
         if (myColor == undefined)
             myColor = 4;
@@ -149,6 +150,7 @@ namespace carnival {
     //% blockId=start_count_up_game
     //% block="start timer"
     //% inlineInputMode=inline
+    //% help=github:carnival/docs/start_count_up_game
     export function startTimer() {
         control.timer1.reset();
         updateFlag(info.Visibility.Countdown, true);
@@ -165,6 +167,7 @@ namespace carnival {
     //% blockId=show_timer
     //% block="show timer $on=toggleOnOff"
     //% inlineInputMode=inline
+    //% help=github:carnival/docs/show_timer
     export function showTimer(on: boolean) {
         updateFlag(info.Visibility.Countdown, on);
     }
@@ -177,6 +180,7 @@ namespace carnival {
     //% blockId=get_timer
     //% block="timer value"
     //% inlineInputMode=inline
+    //% help=github:carnival/docs/get_timer
     export function getTimerValue(): number {
         return control.timer1.millis();
     }
@@ -264,6 +268,7 @@ namespace carnival {
     //% winType.defl=winTypes.Score
     //% winEffect.defl=effects.confetti
     //% inlineInputMode=inline
+    //% help=github:carnival/docs/start_countdown_game
     export function startCountdownGame(myTime: number, winType: winTypes, winEffect?: effects.BackgroundEffect) {
         if (!winType)
             winType = winTypes.Win;
@@ -412,7 +417,7 @@ namespace carnival {
 
         } else if (scoreType == scoreTypes.HTime) {
 
-            // Set thisBest to timeElapsed if no customScore 
+            // Set thisBest to timeElapsed if no customScore
             if (!customScore) {
                 thisBest = timeElapsed;
             }
@@ -428,7 +433,7 @@ namespace carnival {
             bestScore = settings.readNumber("low-score");
             if (bestScore == undefined) { bestScore = Infinity; }
 
-            // Set thisBest to timeElapsed if no customScore 
+            // Set thisBest to timeElapsed if no customScore
             if (!customScore) {
                 thisBest = timeElapsed;
             }
@@ -595,6 +600,7 @@ namespace carnival {
     //% winType.defl=winTypes.Win
     //% winEffect.defl=effects.confetti
     //% inlineInputMode=inline
+    //% help=github:carnival/docs/on_game_over_expanded
     export function onGameOverExpanded(winStyle: winTypes, winEffect?: effects.BackgroundEffect) {
 
         if (winEffect == undefined) {
@@ -621,6 +627,7 @@ namespace carnival {
     //% winEffect.defl=effects.confetti
     //% gameSound.defl=music.powerUp
     //% inlineInputMode=inline
+    //% help=github:carnival/docs/on_game_over_custom_expanded
     export function customGameOverExpanded(message: string, winEffect?: effects.BackgroundEffect, gameSound?: music.Melody, scoring?: scoreTypes, score?: number) {
         if (!winEffect) { winEffect = effects.confetti; }
         if (!scoring) { scoring = scoreTypes.HScore; }
@@ -642,13 +649,14 @@ namespace carnival {
      * @param x optional initial x position, eg: 10
      * @param y optional initial y position, eg: 110
      */
-    //% blockId=throwCreate block="ball $img=screen_image_picker of kind $kind=spritekind || at x $x y $y"
+    //% blockId=throw_create block="ball $img=screen_image_picker of kind $kind=spritekind || at x $x y $y"
     //% color="#b70082"
     //% group="Ball"
     //% expandableArgumentMode=toggle
     //% inlineInputMode=inline
     //% blockSetVariable=myBall
     //% weight=100
+    //% help=github:carnival/docs/throw_create
     export function create(img: Image,
         kind: number,
         x: number = 10,
@@ -669,6 +677,7 @@ namespace carnival {
     //& kind.defl=1
     //% blockSetVariable=myBall
     //% inlineInputMode=inline
+    //% help=github:carnival/docs/create_projectile_ball
     export function createProjectileBallFromSprite(img: Image, parentBall: Ball, kind?: number): Ball {
         let vx = xComponent(parentBall.angle, parentBall.pow);
         let vy = carnival.yComponent(parentBall.angle, parentBall.pow);
@@ -689,6 +698,7 @@ namespace carnival {
     //% blockSetVariable=myBall
     //% inlineInputMode=inline
     //% expandableArgumentMode=toggle
+    //% help=github:carnival/docs/spritescreateprojectileball
     function createProjectileBall(img: Image, vx: number, vy: number, ax: number, ay: number, power: number, kind?: number, parentBall?: Ball) {
         const s = carnival.create(img, kind || SpriteKind.Projectile);
         const sc = game.currentScene();
@@ -748,7 +758,6 @@ namespace carnival {
      * @param magnitude magnitude of vector
      * @return x component of vector
      */
-    //% group="Ball"
     //% color="#b70082"
     export function xComponent(degree: number, magnitude: number): number {
         return magnitude * Math.cos(degreeToRadian(degree));
@@ -760,7 +769,6 @@ namespace carnival {
      * @param magnitude magnitude of vector
      * @return y component of vector
      */
-    //% group="Ball"
     //% color="#b70082"
     export function yComponent(degree: number, magnitude: number): number {
         return -magnitude * Math.sin(degreeToRadian(degree));
@@ -873,6 +881,7 @@ class Ball extends sprites.ExtendableSprite {
     //% group="Ball"
     //% traceWay.defl="tracers.Full"
     //% this.defl=myBall
+    //% help=github:carnival/docs/set_trace_multi
     public setTraceMulti(traceWay: tracers): void {
 
         if (traceWay == tracers.Full) {
@@ -898,7 +907,7 @@ class Ball extends sprites.ExtendableSprite {
 
 
     /**
-     * Set the crosshairs to distance away from center of 
+     * Set the crosshairs to distance away from center of
      * ball in direction ball will travel
      */
 
@@ -918,9 +927,10 @@ class Ball extends sprites.ExtendableSprite {
     //% weight=50
     //% color="#b70082"
     //% group="Ball""
-    //% blockId=setIter block="set $this trace length to $len \\%"
+    //% blockId=set_trace_iter block="set $this trace length to $len \\%"
     //% len.defl=50
     //% this.defl=myBall
+    //% help=github:carnival/docs/set_trace_iter
     public setIter(len: number): void {
         // Make 100 percent distance = 3
         this.iter = 3 * (len / 100);
@@ -932,8 +942,9 @@ class Ball extends sprites.ExtendableSprite {
     //% weight=70
     //% color="#b70082"
     //% group="Ball"
-    //% blockId=throwIt block="toss $this"
+    //% blockId=throw_it block="toss $this"
     //% this.defl=myBall
+    //% help=github:carnival/docs/throw_it
     public throwIt(): void {
         this.vx = carnival.xComponent(this.angle, this.pow);
         this.vy = carnival.yComponent(this.angle, this.pow);
@@ -947,8 +958,9 @@ class Ball extends sprites.ExtendableSprite {
     //% color="#b70082"
     //% weight=70
     //% group="Ball"
-    //% blockId=stopIt block="stop $this"
+    //% blockId=stop_it block="stop $this"
     //% this.defl=myBall
+    //% help=github:carnival/docs/stop_it
     public stopIt(): void {
         this.ay = 0;
         this.ax = 0;
@@ -964,9 +976,10 @@ class Ball extends sprites.ExtendableSprite {
     //% color="#b70082"
     //% weight=80
     //% group="Ball"
-    //% blockId=controlBallKeys block="control $this with arrow keys || $on=toggleOnOff"
+    //% blockId=control_ball_keys block="control $this with arrow keys || $on=toggleOnOff"
     //% this.defl=myBall
     //% inlineInputMode=inline
+    //% help=github:carnival/docs/control_ball_keys
     public controlBallWithArrowKeys(on: boolean = true): void {
         this.controlKeys = on;
 
@@ -981,7 +994,7 @@ class Ball extends sprites.ExtendableSprite {
     /**
   * Changes power from min to max with sin-like cycle
   */
-    //% blockId=variablePower block="vary $this power using $status=variables_get(statusbar) from $minNum \\% to $maxNum \\% || speed $thisSpeed"
+    //% blockId=variable_power block="vary $this power using $status=variables_get(statusbar) from $minNum \\% to $maxNum \\% || speed $thisSpeed"
     //% weight=2
     //% color="#b70082"
     //% group="Ball"
@@ -989,6 +1002,7 @@ class Ball extends sprites.ExtendableSprite {
     //% maxNum.defl=60
     //% this.defl=myBall
     //% inlineInputMode=inline
+    //% help=github:carnival/docs/variable_power
     public variablePower(status: StatusBarSprite, minNum: number, maxNum: number, thisSpeed?: number): void {
         if (thisSpeed == undefined) { thisSpeed = 100; }
         if (minNum < 0) { minNum = 0; }

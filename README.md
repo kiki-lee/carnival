@@ -1,11 +1,11 @@
- 
+
 
 
 > Open this page at [https://kiki-lee.github.io/carnival/](https://kiki-lee.github.io/carnival/)
 
 ## Use as Extension
 
-This repository can be added as an **extension** in MakeCode.
+This repository can be added as an **extension** in MakeCode Arcade. Use it to add extra blocks for enhanced timers, game over options, and ball tossing physics.
 
 * open [https://arcade.makecode.com/](https://arcade.makecode.com/)
 * click on **New Project**
